@@ -1,15 +1,20 @@
-import { Module, Scope } from '@nestjs/common';
-import { BooksController } from './controllers/books.controller';
-import { BooksService } from './services/books.services';
-import { IBook } from './interfaces/book.interfaces';
+import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import configuration from '../config/configuration'
+import { MongooseModule } from '@nestjs/mongoose';
+import { DbModule } from './db/db.module';
 
 @Module({
-  imports: [],
-  controllers: [
-    BooksController<IBook>
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.development.env',
+      load: [configuration]
+    }),
+    MongooseModule.forRoot(`mongodb://${process.env.DATABASE_HOST}:${process.env.DATABASE_PORT}/library`),
+    DbModule,
+    
   ],
-  providers: [
-    BooksService<IBook>,
-  ]
+  controllers: [],
+  providers: []
 })
 export class AppModule {}

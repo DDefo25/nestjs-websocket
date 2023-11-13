@@ -1,5 +1,4 @@
-export interface IBook {
-    id?: string,
+export interface IUpdateBookDto {
     title?: string,
     description?: string,
     authors?: string[],
@@ -7,5 +6,4 @@ export interface IBook {
     fileCover?: string,
     fileName?: string,
     fileBook?: string,
-    views?: number,
 }
