@@ -1,0 +1,35 @@
+import { Injectable } from '@nestjs/common';
+import { Model, Connection } from 'mongoose';
+
+export class CommonDbService<TDocument, TCreateDto, TUpdateDto> {
+    constructor(
+        private commonDbModel: Model<TDocument>,
+        private connection: Connection,
+    ) {}
+
+    add(data: TCreateDto): Promise<TDocument> {
+        return this.commonDbModel.create(data)
+      }
+    
+    get(id: string): Promise<TDocument> {
+        return this.commonDbModel.findById(id)
+    }
+    
+    getAll(): Promise<TDocument[]> {
+        return this.commonDbModel.find().exec()
+    }
+    
+    update(id: string, data: TUpdateDto ): Promise<TDocument> {
+        return this.commonDbModel.findByIdAndUpdate(
+            id,
+            data
+        ).exec()
+    }
+    
+    remove(id: string): Promise<TDocument>  {
+        return this.commonDbModel.findByIdAndDelete(id).exec()
+    }
+}
+
+
+

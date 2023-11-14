@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AuthorController, BookController } from './book.controller';
-import { AuthorService, BookService } from './db.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Book, BookSchema } from './schemas/book.schema';
-import { Author, AuthorSchema } from './schemas/author.schema';
+import { Book, BookSchema } from '../book/schemas/book.schema';
+import { Author, AuthorSchema } from '../author/schemas/author.schema';
+import { BookController } from 'src/book/book.controller';
+import { AuthorController } from 'src/author/author.controller';
+import { BookService } from 'src/book/book.service';
+import { AuthorService } from 'src/author/author.service';
 
 @Module({
     imports: [
@@ -26,4 +28,4 @@ import { Author, AuthorSchema } from './schemas/author.schema';
     ]
 
 })
-export class DbModule {}
+export class CommonDbModule {}
