@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { IParamId } from './interfaces/param-id';
 import { CommonDbService } from './commonDb.service';
+import { CommonDbIdValidationPipe } from './commonDb.id.validation.pipe';
 
 export class CommonDbController<TDocument, TCreateDto, TUpdateDto> {
     constructor(
@@ -13,7 +13,7 @@ export class CommonDbController<TDocument, TCreateDto, TUpdateDto> {
     }
 
     @Get(':id')
-    get(@Param() { id }: IParamId): Promise<TDocument> {
+    get(@Param('id', CommonDbIdValidationPipe) id: string): Promise<TDocument> {
         return this.commonService.get(id);
     }
 
@@ -23,12 +23,12 @@ export class CommonDbController<TDocument, TCreateDto, TUpdateDto> {
     }
 
     @Put(':id')
-    update(@Param() { id }: IParamId, @Body() data: TUpdateDto): Promise<TDocument> {
+    update(@Param('id', CommonDbIdValidationPipe) id: string, @Body() data: TUpdateDto): Promise<TDocument> {
         return this.commonService.update(id, data);
     }
 
     @Delete(':id')
-    delete(@Param() { id }: IParamId): Promise<TDocument> {
+    delete(@Param('id', CommonDbIdValidationPipe) id: string): Promise<TDocument> {
         return this.commonService.remove(id)
     }
 }
