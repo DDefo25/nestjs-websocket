@@ -1,4 +1,12 @@
-export interface IUpdateAuthorDto {
-    name?: string,
-    surname?: string
+import { IsOptional, IsString } from "class-validator"
+
+
+export class UpdateAuthorDto {
+    @IsString()
+    @IsOptional() 
+    name: string;
+
+    @IsString()
+    @IsOptional() 
+    surname: string
 }
