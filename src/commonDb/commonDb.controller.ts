@@ -18,15 +18,14 @@ export class CommonDbController<TDocument, TCreateDto, TUpdateDto> {
         return this.commonService.get(id);
     }
 
-    @UsePipes(new ValidationPipe())
     @Post()
-    create(@Body() data: TCreateDto): Promise<TDocument> {
+    create(@Body(new ValidationPipe()) data: TCreateDto): Promise<TDocument> {
         return this.commonService.add(data);
     }
 
-    @UsePipes(new ValidationPipe())
+   
     @Put(':id')
-    update(@Param('id', CommonDbIdValidationPipe) id: string, @Body() data: TUpdateDto): Promise<TDocument> {
+    update(@Param('id', CommonDbIdValidationPipe) id: string, @Body(new ValidationPipe()) data: TUpdateDto): Promise<TDocument> {
         return this.commonService.update(id, data);
     }
 
