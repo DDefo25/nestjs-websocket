@@ -1,10 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { Model, Connection } from 'mongoose';
+import { Model } from 'mongoose';
 
 export class CommonDbService<TDocument, TCreateDto, TUpdateDto> {
     constructor(
-        private commonDbModel: Model<TDocument>,
-        private connection: Connection,
+        private commonDbModel: Model<TDocument>
     ) {}
 
     add(data: TCreateDto): Promise<TDocument> {

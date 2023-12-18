@@ -7,7 +7,7 @@ export class CreateBookDto  {
 
     @IsString()
     @IsOptional()
-    description: string;
+    description?: string;
 
     @IsArray()
     @ArrayNotEmpty()
@@ -16,7 +16,7 @@ export class CreateBookDto  {
 
     @IsString()
     @IsOptional()
-    favorite: string;
+    favorite?: string;
 
     @IsString()
     @IsDefined()

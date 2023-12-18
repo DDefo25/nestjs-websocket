@@ -1,7 +1,7 @@
 import { Body, Delete, Get, Param, Post, Put, UsePipes } from '@nestjs/common';
 import { CommonDbService } from './commonDb.service';
 import { CommonDbIdValidationPipe } from './commonDb.id.validation.pipe';
-import { ValidationPipe } from 'src/validation/validation.pipe';
+import { ValidationPipe } from '../validation/validation.pipe';
 
 export class CommonDbController<TDocument, TCreateDto, TUpdateDto> {
     constructor(

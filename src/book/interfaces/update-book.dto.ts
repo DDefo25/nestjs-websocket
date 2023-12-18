@@ -3,31 +3,31 @@ import {ArrayNotEmpty, IsArray, IsOptional, IsString} from "class-validator";
 export class UpdateBookDto  {
     @IsString()
     @IsOptional()
-    title: string;
+    title?: string;
 
     @IsString()
     @IsOptional()
-    description: string;
+    description?: string;
 
     @IsArray()
     @IsOptional()
     @ArrayNotEmpty()
     @IsString({each: true})
-    authors: string[];
+    authors?: string[];
 
     @IsString()
     @IsOptional()
-    favorite: string;
+    favorite?: string;
 
     @IsString()
     @IsOptional()
-    fileCover: string;
+    fileCover?: string;
 
     @IsString()
     @IsOptional()
-    fileName: string;
+    fileName?: string;
 
     @IsString()
     @IsOptional()
-    fileBook: string;
+    fileBook?: string;
 }
