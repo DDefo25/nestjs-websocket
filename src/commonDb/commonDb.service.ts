@@ -12,6 +12,12 @@ export class CommonDbService<TDocument, TCreateDto, TUpdateDto> {
     get(id: string): Promise<TDocument> {
         return this.commonDbModel.findById(id)
     }
+
+    getByParam(param: string, value: string): Promise<TDocument> {
+        const filter = {}
+        filter[param] = value
+        return this.commonDbModel.findOne(filter).exec();
+    }
     
     getAll(): Promise<TDocument[]> {
         return this.commonDbModel.find().exec()
